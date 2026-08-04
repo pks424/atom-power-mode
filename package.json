@@ -1,0 +1,127 @@
+{
+    "name": "atom-power-mode",
+    "displayName": "Atom Power Mode (Canvas)",
+    "description": "Atom activate-power-mode port: real canvas particles + screen shake + combo counter, injected into the VSCode workbench.",
+    "version": "1.0.2",
+    "publisher": "pks424",
+    "license": "MIT",
+    "engines": {
+        "vscode": "^1.70.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "main": "./extension.js",
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "contributes": {
+        "commands": [
+            {
+                "command": "atomPowerMode.enable",
+                "title": "Atom Power Mode: Enable"
+            },
+            {
+                "command": "atomPowerMode.disable",
+                "title": "Atom Power Mode: Disable"
+            },
+            {
+                "command": "atomPowerMode.reapply",
+                "title": "Atom Power Mode: Re-apply Injection"
+            }
+        ],
+        "configuration": {
+            "title": "Atom Power Mode",
+            "properties": {
+                "atomPowerMode.enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "order": 0,
+                    "description": "파워모드 활성화 (워크벤치 주입). 변경 시 창 리로드 필요."
+                },
+                "atomPowerMode.particleCount": {
+                    "type": "number",
+                    "default": 12,
+                    "minimum": 1,
+                    "maximum": 60,
+                    "order": 1,
+                    "description": "키 입력당 파티클 개수 (±50% 랜덤)"
+                },
+                "atomPowerMode.particleSize": {
+                    "type": "number",
+                    "default": 3.5,
+                    "minimum": 1,
+                    "maximum": 12,
+                    "order": 2,
+                    "description": "파티클 기본 크기(px)"
+                },
+                "atomPowerMode.gravity": {
+                    "type": "number",
+                    "default": 0.12,
+                    "minimum": 0,
+                    "maximum": 1,
+                    "order": 3,
+                    "description": "파티클 중력 가속도"
+                },
+                "atomPowerMode.maxParticles": {
+                    "type": "number",
+                    "default": 500,
+                    "minimum": 50,
+                    "maximum": 3000,
+                    "order": 4,
+                    "description": "동시 파티클 최대 수 (성능 상한)"
+                },
+                "atomPowerMode.shake.enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "order": 5,
+                    "description": "타이핑 시 에디터 흔들림"
+                },
+                "atomPowerMode.shake.intensity": {
+                    "type": "number",
+                    "default": 3,
+                    "minimum": 0,
+                    "maximum": 20,
+                    "order": 6,
+                    "description": "흔들림 강도(px)"
+                },
+                "atomPowerMode.shake.duration": {
+                    "type": "number",
+                    "default": 90,
+                    "minimum": 0,
+                    "maximum": 1000,
+                    "order": 7,
+                    "description": "흔들림 지속시간(ms)"
+                },
+                "atomPowerMode.combo.enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "order": 8,
+                    "description": "Atom 스타일 콤보 카운터 표시"
+                },
+                "atomPowerMode.combo.timeout": {
+                    "type": "number",
+                    "default": 10,
+                    "minimum": 0,
+                    "maximum": 120,
+                    "order": 9,
+                    "description": "콤보 리셋까지의 시간(초). 0이면 리셋 안 함"
+                },
+                "atomPowerMode.combo.activationThreshold": {
+                    "type": "number",
+                    "default": 0,
+                    "minimum": 0,
+                    "maximum": 1000,
+                    "order": 10,
+                    "description": "이 콤보 수 이상일 때만 파티클/흔들림 발동 (0 = 항상)"
+                },
+                "atomPowerMode.combo.exclamations": {
+                    "type": "boolean",
+                    "default": true,
+                    "order": 11,
+                    "description": "콤보 10단위마다 감탄사(Super!, Radical! ...) 표시"
+                }
+            }
+        }
+    }
+}
