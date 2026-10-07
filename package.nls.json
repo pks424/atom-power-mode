@@ -1,0 +1,18 @@
+{
+    "extension.description": "Atom activate-power-mode for VS Code: real canvas particles in your syntax colors, screen shake and a combo counter.",
+    "command.enable": "Atom Power Mode: Enable",
+    "command.disable": "Atom Power Mode: Disable",
+    "command.reapply": "Atom Power Mode: Re-apply Injection",
+    "config.enabled": "Enable Power Mode (injects into the workbench). Requires a window reload after changing.",
+    "config.particleCount": "Particles per keystroke (±50% random).",
+    "config.particleSize": "Base particle size (px).",
+    "config.gravity": "Particle gravity.",
+    "config.maxParticles": "Maximum particles alive at once (performance cap).",
+    "config.shake.enabled": "Shake the editor while typing.",
+    "config.shake.intensity": "Shake intensity (px).",
+    "config.shake.duration": "Shake duration (ms).",
+    "config.combo.enabled": "Show the Atom-style combo counter.",
+    "config.combo.timeout": "Seconds until the combo resets. 0 = never.",
+    "config.combo.activationThreshold": "Only show particles/shake at or above this combo count (0 = always).",
+    "config.combo.exclamations": "Show an exclamation (Super!, Radical! ...) every 10 combos."
+}

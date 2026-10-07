@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="65%">
+      <stop offset="0" stop-color="#2c313c"/>
+      <stop offset="1" stop-color="#17191e"/>
+    </radialGradient>
+  </defs>
+  <rect width="128" height="128" rx="24" fill="url(#bg)"/>
+  <!-- 커서에서 튀는 신택스 색상 파티클 -->
+  <g fill="#e5c07b"><circle cx="36" cy="38" r="5"/><circle cx="96" cy="30" r="4"/><circle cx="26" cy="74" r="3.5"/></g>
+  <g fill="#61afef"><circle cx="100" cy="64" r="5"/><circle cx="52" cy="22" r="3"/><circle cx="86" cy="98" r="3.5"/></g>
+  <g fill="#c678dd"><circle cx="32" cy="98" r="4"/><circle cx="106" cy="92" r="3"/><circle cx="76" cy="18" r="3.5"/></g>
+  <g fill="#98c379"><circle cx="18" cy="50" r="3"/><circle cx="112" cy="46" r="3"/><circle cx="58" cy="104" r="3"/></g>
+  <g fill="#e06c75"><circle cx="72" cy="36" r="2.5"/><circle cx="46" cy="84" r="2.5"/><circle cx="88" cy="76" r="2.5"/></g>
+  <!-- 커서 -->
+  <rect x="60" y="40" width="8" height="48" rx="2" fill="#eceff4"/>
+</svg>

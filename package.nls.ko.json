@@ -1,0 +1,18 @@
+{
+    "extension.description": "Atom activate-power-mode를 VS Code로: 신택스 색상 캔버스 파티클 + 화면 흔들림 + 콤보 카운터.",
+    "command.enable": "Atom Power Mode: 활성화",
+    "command.disable": "Atom Power Mode: 비활성화",
+    "command.reapply": "Atom Power Mode: 다시 주입",
+    "config.enabled": "파워모드 활성화 (워크벤치 주입). 변경 시 창 리로드 필요.",
+    "config.particleCount": "키 입력당 파티클 개수 (±50% 랜덤)",
+    "config.particleSize": "파티클 기본 크기(px)",
+    "config.gravity": "파티클 중력 가속도",
+    "config.maxParticles": "동시 파티클 최대 수 (성능 상한)",
+    "config.shake.enabled": "타이핑 시 에디터 흔들림",
+    "config.shake.intensity": "흔들림 강도(px)",
+    "config.shake.duration": "흔들림 지속시간(ms)",
+    "config.combo.enabled": "Atom 스타일 콤보 카운터 표시",
+    "config.combo.timeout": "콤보 리셋까지의 시간(초). 0이면 리셋 안 함",
+    "config.combo.activationThreshold": "이 콤보 수 이상일 때만 파티클/흔들림 발동 (0 = 항상)",
+    "config.combo.exclamations": "콤보 10단위마다 감탄사(Super!, Radical! ...) 표시"
+}

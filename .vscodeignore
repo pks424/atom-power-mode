@@ -1,3 +1,5 @@
 .gitignore
+.claude/**
 *.vsix
 node_modules/**
+images/*.svg
