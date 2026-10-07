@@ -2,6 +2,9 @@
 
 Brings Atom's [activate-power-mode](https://github.com/JoelBesada/activate-power-mode) to VS Code.
 
+**Install:** [VS Code Marketplace — Atom Power Mode (Canvas)](https://marketplace.visualstudio.com/items?itemName=pks424.atom-power-mode)
+or search `Atom Power Mode` in the Extensions view (`ext install pks424.atom-power-mode`).
+
 Unlike decoration/GIF based power-mode extensions, this one draws on a **real canvas inside the workbench**:
 
 - **Physics particles** burst from the cursor on every keystroke, colored with the **syntax color of the token you just typed**
@@ -52,6 +55,8 @@ Inspired by [activate-power-mode](https://github.com/JoelBesada/activate-power-m
 ## 한국어
 
 Atom 에디터의 activate-power-mode를 VS Code로 옮긴 확장입니다. 워크벤치에 캔버스를 직접 띄워 **신택스 색상 물리 파티클 + 화면 흔들림 + 콤보 카운터**를 보여줍니다.
+
+**설치**: [VS Code 마켓플레이스](https://marketplace.visualstudio.com/items?itemName=pks424.atom-power-mode) 또는 확장 탭에서 `Atom Power Mode` 검색
 
 **동작 방식(설치 전 확인)**: VS Code 확장은 에디터 위에 그림을 그릴 수 없어서, VS Code 설치 폴더의 `workbench.html`에 스크립트 한 줄을 추가하고 `product.json`의 해당 체크섬을 맞춰 *"설치가 손상된 것 같습니다"* 경고가 뜨지 않게 합니다.
 
