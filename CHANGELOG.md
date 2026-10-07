@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1
+
+- Add a demo GIF and a Marketplace link to the README.
+
 ## 1.1.0
 
 - Uninstalling the extension now removes the injection and restores the checksum (on the next VS Code restart).

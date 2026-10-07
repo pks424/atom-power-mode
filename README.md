@@ -5,6 +5,8 @@ Brings Atom's [activate-power-mode](https://github.com/JoelBesada/activate-power
 **Install:** [VS Code Marketplace — Atom Power Mode (Canvas)](https://marketplace.visualstudio.com/items?itemName=pks424.atom-power-mode)
 or search `Atom Power Mode` in the Extensions view (`ext install pks424.atom-power-mode`).
 
+![Atom Power Mode demo](images/demo.gif)
+
 Unlike decoration/GIF based power-mode extensions, this one draws on a **real canvas inside the workbench**:
 
 - **Physics particles** burst from the cursor on every keystroke, colored with the **syntax color of the token you just typed**

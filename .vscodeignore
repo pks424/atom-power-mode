@@ -3,3 +3,4 @@
 *.vsix
 node_modules/**
 images/*.svg
+images/demo.gif
