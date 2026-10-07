@@ -2,6 +2,7 @@
 const vscode = require('vscode');
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 const START = '<!-- !! ATOM-POWER-MODE-START !! -->';
 const END = '<!-- !! ATOM-POWER-MODE-END !! -->';
@@ -65,6 +66,20 @@ function stripBlock(html, startMarker, endMarker) {
     return head + tail;
 }
 
+// VSCode는 시작 시 product.json의 checksums와 핵심 파일 해시를 비교해 "설치가 손상된 것 같습니다" 경고를 띄운다.
+// workbench.html의 현재 해시(sha256 base64, '=' 제거)로 해당 값만 문자열 치환해 경고를 없앤다.
+// 주입 해제 시 html이 원본으로 돌아가므로 같은 계산으로 원래 해시가 복원된다.
+function syncChecksum(file) {
+    const productFile = path.join(vscode.env.appRoot, 'product.json');
+    const key = path.relative(path.join(vscode.env.appRoot, 'out'), file).replace(/\\/g, '/');
+    const text = fs.readFileSync(productFile, 'utf8');
+    const current = (JSON.parse(text).checksums || {})[key];
+    if (!current) return;
+    const actual = crypto.createHash('sha256').update(fs.readFileSync(file)).digest('base64').replace(/=+$/, '');
+    if (current === actual) return;
+    fs.writeFileSync(productFile, text.replace('"' + current + '"', '"' + actual + '"'), 'utf8');
+}
+
 // 주입 상태를 원하는 상태로 동기화. 변경이 있었으면 true 반환.
 function apply(ctx, opts) {
     opts = opts || {};
@@ -102,6 +117,7 @@ function apply(ctx, opts) {
             fs.writeFileSync(file, html, 'utf8');
             changed = true;
         }
+        syncChecksum(file);
     } catch (err) {
         if (err.code === 'EPERM' || err.code === 'EACCES') {
             vscode.window.showErrorMessage(

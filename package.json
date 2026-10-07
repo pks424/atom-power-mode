@@ -2,7 +2,7 @@
     "name": "atom-power-mode",
     "displayName": "Atom Power Mode (Canvas)",
     "description": "Atom activate-power-mode port: real canvas particles + screen shake + combo counter, injected into the VSCode workbench.",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "publisher": "pks424",
     "license": "MIT",
     "engines": {
