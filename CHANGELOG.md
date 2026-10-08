@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.2
+
+- After the injection changes `workbench.html` (enable, disable, re-apply after a VS Code update), ask to quit and restart VS Code instead of reloading the window — a reload keeps the old checksums in memory and shows the "corrupt installation" warning once.
+- Setting changes still only need a window reload.
+
 ## 1.1.1
 
 - Add a demo GIF and a Marketplace link to the README.

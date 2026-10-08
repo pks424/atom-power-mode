@@ -46,7 +46,7 @@ function saveState(ctx) {
     }
 }
 
-// 주입 상태를 원하는 상태로 동기화. 변경이 있었으면 true 반환.
+// 주입 상태를 원하는 상태로 동기화. 변경 종류('html' / 'js') 또는 false 반환.
 function apply(ctx, opts) {
     opts = opts || {};
     const enabled = vscode.workspace.getConfiguration('atomPowerMode').get('enabled');
@@ -69,18 +69,31 @@ function apply(ctx, opts) {
     }
     if (enabled) saveState(ctx);
     if (!changed) return false;
-    if (!opts.silent) promptReload(enabled);
-    return true;
+    if (!opts.silent) promptAfterChange(enabled, changed);
+    return changed;
 }
 
-function promptReload(enabled) {
-    const msg = enabled
-        ? t('Power Mode를 적용하려면 창을 다시 로드하세요.', 'Reload the window to apply Power Mode.')
-        : t('Power Mode를 해제하려면 창을 다시 로드하세요.', 'Reload the window to remove Power Mode.');
+// workbench.html이 바뀌면 product.json 체크섬도 바뀌는데, VS Code는 product.json을 프로세스 시작 때만 읽는다.
+// 창 다시 로드로는 옛 체크섬으로 검사해 "설치 손상" 경고가 뜨므로 완전 종료 후 재실행을 안내한다.
+// 스크립트만 바뀐 경우(설정 변경)는 체크섬과 무관해 창 다시 로드로 충분하다.
+function promptAfterChange(enabled, changed) {
+    if (changed === 'html') {
+        const msg = enabled
+            ? t('Power Mode를 적용하려면 VS Code를 완전히 종료한 뒤 다시 실행하세요. (창 다시 로드만 하면 "설치 손상" 경고가 한 번 뜹니다)',
+                'Quit VS Code and start it again to apply Power Mode. (A window reload alone shows the "installation appears to be corrupt" warning once.)')
+            : t('Power Mode를 해제하려면 VS Code를 완전히 종료한 뒤 다시 실행하세요.',
+                'Quit VS Code and start it again to remove Power Mode.');
+        const quit = t('VS Code 종료', 'Quit VS Code');
+        vscode.window.showInformationMessage(msg, quit).then(function (v) {
+            if (v === quit) vscode.commands.executeCommand('workbench.action.quit');
+        });
+        return;
+    }
     const reload = t('지금 리로드', 'Reload Now');
-    vscode.window.showInformationMessage(msg, reload).then(function (v) {
-        if (v === reload) vscode.commands.executeCommand('workbench.action.reloadWindow');
-    });
+    vscode.window.showInformationMessage(t('설정을 적용하려면 창을 다시 로드하세요.', 'Reload the window to apply the settings.'), reload)
+        .then(function (v) {
+            if (v === reload) vscode.commands.executeCommand('workbench.action.reloadWindow');
+        });
 }
 
 function setEnabled(value) {
@@ -104,9 +117,8 @@ function activate(ctx) {
         })
     );
     // 시작 시 동기화: VS Code 업데이트로 주입이 날아갔거나 설정과 어긋나면 복구
-    if (apply(ctx, { silent: true })) {
-        promptReload(vscode.workspace.getConfiguration('atomPowerMode').get('enabled'));
-    }
+    const changed = apply(ctx, { silent: true });
+    if (changed) promptAfterChange(vscode.workspace.getConfiguration('atomPowerMode').get('enabled'), changed);
 }
 
 function deactivate() { }

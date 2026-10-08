@@ -55,8 +55,9 @@ function syncChecksum(appRoot, file) {
     fs.writeFileSync(productFile, text.replace('"' + current + '"', '"' + actual + '"'), 'utf8');
 }
 
-// 주입 상태를 원하는 상태로 동기화. 파일을 바꿨으면 true. 쓰기 실패 시 예외를 그대로 던진다.
+// 주입 상태를 원하는 상태로 동기화. 쓰기 실패 시 예외를 그대로 던진다.
 // js: 주입할 스크립트 내용, null이면 제거.
+// 반환: 'html'(workbench.html이 바뀜 → 체크섬도 바뀜) / 'js'(스크립트만 바뀜) / false(변경 없음)
 function sync(appRoot, js) {
     const file = workbenchPath(appRoot);
     if (!file) throw Object.assign(new Error('workbench.html not found'), { code: 'NOWORKBENCH' });
@@ -70,15 +71,15 @@ function sync(appRoot, js) {
         const currentJs = fs.existsSync(jsFile) ? fs.readFileSync(jsFile, 'utf8') : null;
         if (currentJs !== js) {
             fs.writeFileSync(jsFile, js, 'utf8');
-            changed = true;
+            changed = 'js';
         }
     } else if (fs.existsSync(jsFile)) {
         fs.unlinkSync(jsFile);
-        changed = true;
+        changed = 'js';
     }
     if (html !== original) {
         fs.writeFileSync(file, html, 'utf8');
-        changed = true;
+        changed = 'html';
     }
     syncChecksum(appRoot, file);
     return changed;

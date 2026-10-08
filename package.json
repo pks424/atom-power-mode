@@ -2,7 +2,7 @@
     "name": "atom-power-mode",
     "displayName": "Atom Power Mode (Canvas)",
     "description": "%extension.description%",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "publisher": "pks424",
     "license": "MIT",
     "icon": "images/icon.png",
